@@ -40,14 +40,14 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
                 variant={scheme.type === 'central' ? 'default' : 'secondary'}
                 className={scheme.type === 'central' ? 'bg-accent' : ''}
               >
-                {scheme.type === 'central' ? 'केंद्रीय योजना' : 'राज्य योजना'}
+                {scheme.type === 'central' ? 'Central Scheme' : 'State Scheme'}
               </Badge>
               <Badge variant="outline">
                 {scheme.category}
               </Badge>
               {matchScore && (
                 <Badge className="bg-success">
-                  {matchScore}% मैच
+                  {matchScore}% Match
                 </Badge>
               )}
             </div>
@@ -63,7 +63,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
         <div className="flex items-start gap-2">
           <IndianRupee className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
           <div>
-            <p className="font-medium text-sm">लाभ:</p>
+            <p className="font-medium text-sm">Benefits:</p>
             <p className="text-sm text-muted-foreground">{scheme.benefits}</p>
           </div>
         </div>
@@ -72,9 +72,9 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
         <div className="flex items-start gap-2">
           <MapPin className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
           <div>
-            <p className="font-medium text-sm">क्षेत्र:</p>
+            <p className="font-medium text-sm">Area:</p>
             <p className="text-sm text-muted-foreground">
-              {scheme.type === 'central' ? 'पूरे भारत में' : scheme.state || 'राज्य स्तर'}
+              {scheme.type === 'central' ? 'All India' : scheme.state || 'State Level'}
             </p>
           </div>
         </div>
@@ -83,7 +83,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
         <div className="flex items-start gap-2">
           <Users className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
           <div>
-            <p className="font-medium text-sm">योग्यता:</p>
+            <p className="font-medium text-sm">Eligibility:</p>
             <ul className="text-sm text-muted-foreground space-y-1">
               {scheme.eligibility.slice(0, 3).map((criteria, index) => (
                 <li key={index} className="flex items-center gap-1">
@@ -92,7 +92,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
                 </li>
               ))}
               {scheme.eligibility.length > 3 && (
-                <li className="text-xs">और {scheme.eligibility.length - 3} और शर्तें...</li>
+                <li className="text-xs">and {scheme.eligibility.length - 3} more criteria...</li>
               )}
             </ul>
           </div>
@@ -103,7 +103,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
           <div className="flex items-start gap-2">
             <Calendar className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
             <div>
-              <p className="font-medium text-sm">अंतिम तारीख:</p>
+              <p className="font-medium text-sm">Deadline:</p>
               <p className="text-sm text-muted-foreground">{scheme.applicationDeadline}</p>
             </div>
           </div>
@@ -111,7 +111,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
 
         {/* Documents */}
         <div className="bg-muted/50 rounded-lg p-3">
-          <p className="font-medium text-sm mb-2">आवश्यक दस्तावेज:</p>
+          <p className="font-medium text-sm mb-2">Required Documents:</p>
           <div className="flex flex-wrap gap-1">
             {scheme.documentsRequired.slice(0, 4).map((doc, index) => (
               <Badge key={index} variant="outline" className="text-xs">
@@ -120,7 +120,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
             ))}
             {scheme.documentsRequired.length > 4 && (
               <Badge variant="outline" className="text-xs">
-                +{scheme.documentsRequired.length - 4} और
+                +{scheme.documentsRequired.length - 4} more
               </Badge>
             )}
           </div>
@@ -131,7 +131,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
           onClick={() => onApply(scheme)}
           className="w-full bg-primary hover:bg-primary-hover"
         >
-          आवेदन करें
+          Apply Now
           <ExternalLink className="w-4 h-4 ml-2" />
         </Button>
       </CardContent>

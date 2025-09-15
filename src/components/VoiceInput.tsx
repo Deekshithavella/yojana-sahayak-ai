@@ -44,8 +44,8 @@ export function VoiceInput({ onTranscription, isListening, setIsListening }: Voi
         console.error('Speech recognition error:', event.error);
         setIsListening(false);
         toast({
-          title: "आवाज़ की समस्या",
-          description: "कृपया दोबारा कोशिश करें",
+          title: "Voice recognition error",
+          description: "Please try again",
           variant: "destructive",
         });
       };
@@ -61,8 +61,8 @@ export function VoiceInput({ onTranscription, isListening, setIsListening }: Voi
   const toggleListening = () => {
     if (!recognition) {
       toast({
-        title: "आवाज़ सपोर्ट नहीं है",
-        description: "आपका ब्राउज़र आवाज़ को सपोर्ट नहीं करता",
+        title: "Voice not supported",
+        description: "Your browser doesn't support voice recognition",
         variant: "destructive",
       });
       return;
@@ -116,12 +116,12 @@ export function VoiceInput({ onTranscription, isListening, setIsListening }: Voi
           
           <div className="text-center">
             <p className="text-lg font-medium">
-              {isListening ? 'सुन रहे हैं...' : 'बोलना शुरू करें'}
+              {isListening ? 'Listening...' : 'Start Speaking'}
             </p>
             <p className="text-sm text-muted-foreground">
               {isListening 
-                ? 'अपनी जरूरत बताएं' 
-                : 'माइक दबाकर अपनी जानकारी बताएं'
+                ? 'Tell us your requirements' 
+                : 'Press the microphone and tell us about yourself'
               }
             </p>
           </div>
@@ -131,12 +131,12 @@ export function VoiceInput({ onTranscription, isListening, setIsListening }: Voi
         <div className="bg-muted/50 rounded-lg p-4">
           <h4 className="font-medium mb-2 flex items-center gap-2">
             <Volume2 className="w-4 h-4" />
-            उदाहरण:
+            Examples:
           </h4>
           <ul className="text-sm text-muted-foreground space-y-1">
-            <li>• "मैं आंध्र प्रदेश में किसान हूं, 2 एकड़ जमीन है"</li>
-            <li>• "मुझे छात्रवृत्ति चाहिए, मैं इंजीनियरिंग कर रहा हूं"</li>
-            <li>• "महिला उद्यमी के लिए क्या योजना है?"</li>
+            <li>• "I am a farmer in Andhra Pradesh with 2 acres of land"</li>
+            <li>• "I need scholarship, I'm studying engineering"</li>
+            <li>• "What schemes are available for women entrepreneurs?"</li>
           </ul>
         </div>
       </div>

@@ -36,13 +36,13 @@ const INDIAN_STATES = [
 ];
 
 const OCCUPATIONS = [
-  'किसान', 'छात्र', 'गृहिणी', 'व्यापारी', 'मजदूर', 'कर्मचारी', 
-  'बेरोजगार', 'रिटायर्ड', 'उद्यमी', 'कारीगर', 'मछुआरा', 'पशुपालक'
+  'Farmer', 'Student', 'Homemaker', 'Trader', 'Laborer', 'Employee', 
+  'Unemployed', 'Retired', 'Entrepreneur', 'Artisan', 'Fisherman', 'Livestock'
 ];
 
 const EDUCATION_LEVELS = [
-  'अनपढ़', 'प्राथमिक', 'माध्यमिक', 'उच्च माध्यमिक', 'स्नातक', 
-  'स्नातकोत्तर', 'डिप्लोमा', 'व्यावसायिक कोर्स'
+  'Illiterate', 'Primary', 'Secondary', 'Higher Secondary', 'Graduate', 
+  'Post Graduate', 'Diploma', 'Vocational Course'
 ];
 
 export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: UserProfileProps) {
@@ -69,10 +69,10 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <User className="w-5 h-5 text-primary" />
-          आपकी जानकारी
+          Your Information
         </CardTitle>
         <p className="text-sm text-muted-foreground">
-          सही योजनाओं की जानकारी के लिए अपनी जानकारी भरें
+          Please fill in your details to find the right schemes for you
         </p>
       </CardHeader>
       
@@ -80,23 +80,23 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
         {/* Basic Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="name">नाम (वैकल्पिक)</Label>
+            <Label htmlFor="name">Name (Optional)</Label>
             <Input
               id="name"
               value={profile.name || ''}
               onChange={(e) => updateProfile('name', e.target.value)}
-              placeholder="आपका नाम"
+              placeholder="Your name"
             />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="age">उम्र (वैकल्पिक)</Label>
+            <Label htmlFor="age">Age (Optional)</Label>
             <Input
               id="age"
               type="number"
               value={profile.age || ''}
               onChange={(e) => updateProfile('age', parseInt(e.target.value) || undefined)}
-              placeholder="आपकी उम्र"
+              placeholder="Your age"
             />
           </div>
         </div>
@@ -105,14 +105,14 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
         <div className="space-y-4">
           <h4 className="font-medium flex items-center gap-2">
             <MapPin className="w-4 h-4 text-accent" />
-            स्थान *
+            Location *
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="state">राज्य</Label>
+              <Label htmlFor="state">State</Label>
               <Select onValueChange={(value) => updateProfile('state', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="राज्य चुनें" />
+                  <SelectValue placeholder="Select State" />
                 </SelectTrigger>
                 <SelectContent>
                   {INDIAN_STATES.map((state) => (
@@ -123,12 +123,12 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="district">जिला (वैकल्पिक)</Label>
+              <Label htmlFor="district">District (Optional)</Label>
               <Input
                 id="district"
                 value={profile.district || ''}
                 onChange={(e) => updateProfile('district', e.target.value)}
-                placeholder="आपका जिला"
+                placeholder="Your district"
               />
             </div>
           </div>
@@ -138,14 +138,14 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
         <div className="space-y-4">
           <h4 className="font-medium flex items-center gap-2">
             <Briefcase className="w-4 h-4 text-primary" />
-            व्यवसाय व आय
+            Occupation & Income
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="occupation">व्यवसाय *</Label>
+              <Label htmlFor="occupation">Occupation *</Label>
               <Select onValueChange={(value) => updateProfile('occupation', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="व्यवसाय चुनें" />
+                  <SelectValue placeholder="Select Occupation" />
                 </SelectTrigger>
                 <SelectContent>
                   {OCCUPATIONS.map((occupation) => (
@@ -156,13 +156,13 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="income">वार्षिक आय (रुपए में, वैकल्पिक)</Label>
+              <Label htmlFor="income">Annual Income (in Rupees, Optional)</Label>
               <Input
                 id="income"
                 type="number"
                 value={profile.income || ''}
                 onChange={(e) => updateProfile('income', parseInt(e.target.value) || undefined)}
-                placeholder="जैसे: 200000"
+                placeholder="e.g. 200000"
               />
             </div>
           </div>
@@ -172,44 +172,44 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
         <div className="space-y-4">
           <h4 className="font-medium flex items-center gap-2">
             <Home className="w-4 h-4 text-success" />
-            व्यक्तिगत जानकारी *
+            Personal Details *
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="gender">लिंग</Label>
+              <Label htmlFor="gender">Gender</Label>
               <Select onValueChange={(value) => updateProfile('gender', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="लिंग चुनें" />
+                  <SelectValue placeholder="Select Gender" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="male">पुरुष</SelectItem>
-                  <SelectItem value="female">महिला</SelectItem>
-                  <SelectItem value="other">अन्य</SelectItem>
+                  <SelectItem value="male">Male</SelectItem>
+                  <SelectItem value="female">Female</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="category">श्रेणी</Label>
+              <Label htmlFor="category">Category</Label>
               <Select onValueChange={(value) => updateProfile('category', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="श्रेणी चुनें" />
+                  <SelectValue placeholder="Select Category" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="general">सामान्य</SelectItem>
-                  <SelectItem value="obc">ओबीसी</SelectItem>
-                  <SelectItem value="sc">अनुसूचित जाति</SelectItem>
-                  <SelectItem value="st">अनुसूचित जनजाति</SelectItem>
-                  <SelectItem value="ews">आर्थिक रूप से कमजोर वर्ग</SelectItem>
+                  <SelectItem value="general">General</SelectItem>
+                  <SelectItem value="obc">OBC</SelectItem>
+                  <SelectItem value="sc">SC</SelectItem>
+                  <SelectItem value="st">ST</SelectItem>
+                  <SelectItem value="ews">EWS</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="education">शिक्षा</Label>
+              <Label htmlFor="education">Education</Label>
               <Select onValueChange={(value) => updateProfile('education', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="शिक्षा चुनें" />
+                  <SelectValue placeholder="Select Education" />
                 </SelectTrigger>
                 <SelectContent>
                   {EDUCATION_LEVELS.map((education) => (
@@ -224,25 +224,25 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
         {/* Additional Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="familySize">परिवार के सदस्य (वैकल्पिक)</Label>
+            <Label htmlFor="familySize">Family Members (Optional)</Label>
             <Input
               id="familySize"
               type="number"
               value={profile.familySize || ''}
               onChange={(e) => updateProfile('familySize', parseInt(e.target.value) || undefined)}
-              placeholder="जैसे: 4"
+              placeholder="e.g. 4"
             />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="landOwnership">जमीन (एकड़ में, वैकल्पिक)</Label>
+            <Label htmlFor="landOwnership">Land (in acres, Optional)</Label>
             <Input
               id="landOwnership"
               type="number"
               step="0.1"
               value={profile.landOwnership || ''}
               onChange={(e) => updateProfile('landOwnership', parseFloat(e.target.value) || undefined)}
-              placeholder="जैसे: 2.5"
+              placeholder="e.g. 2.5"
             />
           </div>
         </div>
@@ -250,12 +250,12 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
         {/* Profile Summary */}
         {(profile.state || profile.occupation) && (
           <div className="bg-muted/50 rounded-lg p-4">
-            <h4 className="font-medium mb-2">आपकी प्रोफाइल:</h4>
+            <h4 className="font-medium mb-2">Your Profile:</h4>
             <div className="flex flex-wrap gap-2">
               {profile.state && <Badge variant="outline">{profile.state}</Badge>}
               {profile.occupation && <Badge variant="outline">{profile.occupation}</Badge>}
-              {profile.gender && <Badge variant="outline">{profile.gender === 'male' ? 'पुरुष' : profile.gender === 'female' ? 'महिला' : 'अन्य'}</Badge>}
-              {profile.category && <Badge variant="outline">{profile.category}</Badge>}
+              {profile.gender && <Badge variant="outline">{profile.gender === 'male' ? 'Male' : profile.gender === 'female' ? 'Female' : 'Other'}</Badge>}
+              {profile.category && <Badge variant="outline">{profile.category.toUpperCase()}</Badge>}
               {profile.education && <Badge variant="outline">{profile.education}</Badge>}
             </div>
           </div>
@@ -268,12 +268,12 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
           className="w-full bg-primary hover:bg-primary-hover"
           size="lg"
         >
-          योजनाएं खोजें
+          Find Schemes
         </Button>
         
         {!isComplete && (
           <p className="text-sm text-muted-foreground text-center">
-            कृपया * वाली सभी जानकारी भरें
+            Please fill all required fields marked with *
           </p>
         )}
       </CardContent>
