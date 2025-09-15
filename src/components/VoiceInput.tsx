@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Mic, MicOff, Volume2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import '@/types/speech';
+
 
 interface VoiceInputProps {
   onTranscription: (text: string, language: string) => void;
