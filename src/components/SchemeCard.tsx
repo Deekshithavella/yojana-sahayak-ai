@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { IndianRupee, MapPin, Users, Calendar, ExternalLink } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export interface Scheme {
   id: string;
@@ -27,6 +28,8 @@ interface SchemeCardProps {
 }
 
 export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
+  const { t } = useLanguage();
+  
   return (
     <Card className="h-full border-border hover:shadow-lg transition-shadow">
       <CardHeader className="pb-3">
@@ -47,7 +50,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
               </Badge>
               {matchScore && (
                 <Badge className="bg-success">
-                  {matchScore}% Match
+                  {matchScore}% {t('matchScore')}
                 </Badge>
               )}
             </div>
@@ -63,7 +66,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
         <div className="flex items-start gap-2">
           <IndianRupee className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
           <div>
-            <p className="font-medium text-sm">Benefits:</p>
+            <p className="font-medium text-sm">{t('benefits')}:</p>
             <p className="text-sm text-muted-foreground">{scheme.benefits}</p>
           </div>
         </div>
@@ -83,7 +86,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
         <div className="flex items-start gap-2">
           <Users className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
           <div>
-            <p className="font-medium text-sm">Eligibility:</p>
+            <p className="font-medium text-sm">{t('eligibility')}:</p>
             <ul className="text-sm text-muted-foreground space-y-1">
               {scheme.eligibility.slice(0, 3).map((criteria, index) => (
                 <li key={index} className="flex items-center gap-1">
@@ -111,7 +114,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
 
         {/* Documents */}
         <div className="bg-muted/50 rounded-lg p-3">
-          <p className="font-medium text-sm mb-2">Required Documents:</p>
+          <p className="font-medium text-sm mb-2">{t('documentsRequired')}:</p>
           <div className="flex flex-wrap gap-1">
             {scheme.documentsRequired.slice(0, 4).map((doc, index) => (
               <Badge key={index} variant="outline" className="text-xs">
@@ -131,7 +134,7 @@ export function SchemeCard({ scheme, matchScore, onApply }: SchemeCardProps) {
           onClick={() => onApply(scheme)}
           className="w-full bg-primary hover:bg-primary-hover"
         >
-          Apply Now
+          {t('applyNow')}
           <ExternalLink className="w-4 h-4 ml-2" />
         </Button>
       </CardContent>

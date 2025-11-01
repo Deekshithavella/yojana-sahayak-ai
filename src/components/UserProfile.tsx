@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { User, MapPin, Briefcase, Home, DollarSign } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export interface UserProfileData {
   name?: string;
@@ -47,6 +48,7 @@ const EDUCATION_LEVELS = [
 
 export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: UserProfileProps) {
   const [isComplete, setIsComplete] = useState(false);
+  const { t } = useLanguage();
 
   const updateProfile = (field: keyof UserProfileData, value: any) => {
     const updatedProfile = { ...profile, [field]: value };
@@ -176,15 +178,15 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="gender">Gender</Label>
+              <Label htmlFor="gender">{t('gender')}</Label>
               <Select onValueChange={(value) => updateProfile('gender', value)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Select Gender" />
+                  <SelectValue placeholder={t('selectGender')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="male">Male</SelectItem>
-                  <SelectItem value="female">Female</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem value="male">{t('male')}</SelectItem>
+                  <SelectItem value="female">{t('female')}</SelectItem>
+                  <SelectItem value="other">{t('other')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -268,7 +270,7 @@ export function UserProfile({ profile, onProfileUpdate, onProfileComplete }: Use
           className="w-full bg-primary hover:bg-primary-hover"
           size="lg"
         >
-          Find Schemes
+          {t('continueBtn')}
         </Button>
         
         {!isComplete && (

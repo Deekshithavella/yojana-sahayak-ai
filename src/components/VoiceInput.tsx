@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Mic, MicOff, Volume2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 
 interface VoiceInputProps {
@@ -21,6 +22,7 @@ export function VoiceInput({ onTranscription, isListening, setIsListening }: Voi
   ]);
   const [selectedLanguage, setSelectedLanguage] = useState('hi-IN');
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   useEffect(() => {
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
@@ -44,8 +46,8 @@ export function VoiceInput({ onTranscription, isListening, setIsListening }: Voi
         console.error('Speech recognition error:', event.error);
         setIsListening(false);
         toast({
-          title: "Voice recognition error",
-          description: "Please try again",
+          title: t('voiceError'),
+          description: t('voiceErrorDesc'),
           variant: "destructive",
         });
       };
@@ -61,8 +63,8 @@ export function VoiceInput({ onTranscription, isListening, setIsListening }: Voi
   const toggleListening = () => {
     if (!recognition) {
       toast({
-        title: "Voice not supported",
-        description: "Your browser doesn't support voice recognition",
+        title: t('voiceNotSupported'),
+        description: t('voiceNotSupportedDesc'),
         variant: "destructive",
       });
       return;
@@ -116,12 +118,12 @@ export function VoiceInput({ onTranscription, isListening, setIsListening }: Voi
           
           <div className="text-center">
             <p className="text-lg font-medium">
-              {isListening ? 'Listening...' : 'Start Speaking'}
+              {isListening ? t('listening') : t('startSpeaking')}
             </p>
             <p className="text-sm text-muted-foreground">
               {isListening 
-                ? 'Tell us your requirements' 
-                : 'Press the microphone and tell us about yourself'
+                ? t('listeningDesc')
+                : t('startSpeakingDesc')
               }
             </p>
           </div>
@@ -131,12 +133,12 @@ export function VoiceInput({ onTranscription, isListening, setIsListening }: Voi
         <div className="bg-muted/50 rounded-lg p-4">
           <h4 className="font-medium mb-2 flex items-center gap-2">
             <Volume2 className="w-4 h-4" />
-            Examples:
+            {t('examples')}
           </h4>
           <ul className="text-sm text-muted-foreground space-y-1">
-            <li>• "I am a farmer in Andhra Pradesh with 2 acres of land"</li>
-            <li>• "I need scholarship, I'm studying engineering"</li>
-            <li>• "What schemes are available for women entrepreneurs?"</li>
+            <li>• {t('example1')}</li>
+            <li>• {t('example2')}</li>
+            <li>• {t('example3')}</li>
           </ul>
         </div>
       </div>
